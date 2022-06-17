@@ -1,8 +1,9 @@
+from multiprocessing.connection import answer_challenge
 from tkinter import *
 
 #창만들기
 window = Tk()
-window.geometry("270x125")
+window.geometry("260x70")
 window.resizable(width=False, height=False)
 
 """
@@ -17,7 +18,8 @@ window.title("Factorial")
 label1 = Label(window, text="Factorial Calculator")
 label1.pack()
 
-label3 = Label(window)
+label3 = Label(window, text="")
+label3.pack(side= "bottom")
 answer = ""
 expression = ""
 
@@ -32,60 +34,33 @@ def ent_p():
     global answer
     global expression
     global label3
-    try:
-        label3 = Label(window)
-        answer = ""
-        expression = ""
 
-        a = str(inputw.get())
-        a = int(a.replace(a[a.find("!")], ""))
-        sums = 1
-        count = 0
 
-        for i in range(1, a+1):
-            sums *= i
-            count += 1
-            if a-count >= 1:
-                print("{}x".format(i, sums), end="")
-                expression += "{}x".format(i, sums)
-            else:
-                print("{}=".format(i), end="")
-                expression += "{}=".format(i)
-                label3.config(text=expression)
-        answer = sums
-        print("{}\n".format(sums))
-        print("answer : {}".format(sums))
-        print(expression, answer)
-        label3.config(text="Expression: {}{}".format(expression, answer))
-        label3.pack(side="bottom")
 
-    except:
-        
-        label3 = Label(window)
-        answer = ""
-        expression = ""
+    answer = ""
+    expression = ""
 
-        a = str(inputw.get())
-        a = int(a.replace(a[a.find("!")], ""))
-        sums = 1
-        count = 0
+    a = str(inputw.get())
+    a = int(a.replace(a[a.find("!")], ""))
+    sums = 1
+    count = 0
 
-        for i in range(1, a+1):
-            sums *= i
-            count += 1
-            if a-count >= 1:
-                print("{}x".format(i, sums), end="")
-                expression += "{}x".format(i, sums)
-            else:
-                print("{}=".format(i), end="")
-                expression += "{}=".format(i)
-                label3.config(text=expression)
-        answer = sums
-        print("{}\n".format(sums))
-        print("answer : {}".format(sums))
-        print(expression, answer)
-        label3.config(text="Expression: {}{}".format(expression, answer))
-        label3.pack(side="bottom")
+    for i in range(1, a+1):
+        sums *= i
+        count += 1
+        if a-count >= 1:
+            print("{}x".format(i, sums), end="")
+            expression += "{}x".format(i, sums)
+        else:
+            print("{}=".format(i), end="")
+            expression += "{}=".format(i)
+
+    answer = sums
+    print("{}\n".format(sums))
+    print("answer : {}".format(sums))
+    print(expression, answer)
+    label3.config(text="Expression: {}{}".format(expression, answer))
+    label3.pack(side="bottom")
 
 
 #확인 버튼 만들기
